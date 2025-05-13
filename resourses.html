@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mymentor</title>
+    <link rel="stylesheet" href="styel.css">
+    <style>
+        input{
+            margin-top: 10px;
+        }
+        button{
+            margin-top: 10px;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+            width: 500px;
+            margin-top: 20px;
+        }
+        .box ul{
+            width: 400px;
+            margin-left: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .box li{
+            padding: 0;
+            height: 30px;
+            width: 200px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="log">
+            <img src="img/Symbol.png" alt="" width="34px" height="35px">
+            <h3>Mymentor</h3>
+        </div>
+        <ul>
+            <li style="width: 50px;"> <a  href="index.html">Home</a></li>
+            <li  style="width: 80px;"> <a href="todolist.html"  >To-do-list</a></li>
+            <li  class="o" style="width: 90px;"><a href="resourses.html" class="o">Resourses</a></li>
+        </ul>
+    </header>
+    <div class="con" style="margin-top: 200px; margin-bottom: 200px; padding-bottom: 170px;">
+        <div class="l">
+            <h1><span style="color: #703bf7; font-size: 36px;">In this section,</span>  you can save and manage links to useful materials that help you achieve your goal.</h1>
+            <h3>Learning to systematically collect information is an important skill for any specialist.</h3>
+            <h3>A mentor can recommend resources to you, and you save them here and use them as you learn.</h3>
+        </div>
+        <div class="r">
+            <div class="co">
+                <h2 style="margin-bottom: 30px;">Useful resources</h2>
+                <input type="text" placeholder="Enter a name" class="inp1">
+                <input type="text" placeholder="Enter a link" class="inp2">
+                <br>
+                <button class="btn">Add</button>
+                <div class="box">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer" style="margin-top: 200px;" >
+        <div class="footer-container">
+          <div class="footer-left">
+            <h2>MyMentor</h2>
+            <p style="color: rgba(255, 255, 255, 0.815);">Platform for development with the support of mentors.</p>
+          </div>
+          <div class="footer-right">
+            <a href="#">Home</a>
+            <a href="#">To-do-List</a>
+            <a href="#">Resourses</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p style="color: rgba(255, 255, 255, 0.892);">&copy; 2025 MyMentor</p>
+        </div>
+    </footer>
+    <script>
+        const btn=document.querySelector('.btn')
+        const in1=document.querySelector('.inp1')
+        const in2=document.querySelector('.inp2')
+        const container=document.querySelector('.box')
+        const arr = JSON.parse(localStorage.getItem('url')) || [];
+        function start(){
+            container.innerHTML = "";
+            for (let i = 0; i < arr.length; i++) {
+                const ul=document.createElement('ul')
+                ul.innerHTML=`
+                     <li class="baby"> <a  href="${arr[i].inp2}">${arr[i].inp1}</a></li>
+                     <button  class="del">Delete</button>
+                `
+                container.appendChild(ul)
+                ul.querySelector('.del').addEventListener('click',function(){
+                    arr.splice(i, 1);
+                    localStorage.setItem('url', JSON.stringify(arr));
+                    start();
+                })
+            }
+        }
+        start()
+        btn.addEventListener('click',function(){
+            const inp1=in1.value
+            const inp2=in2.value
+            arr.push({inp1,inp2})
+            localStorage.setItem('url',JSON.stringify(arr))
+            start()
+        })
+    </script>
+
+</body>
+</html>

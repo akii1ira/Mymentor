@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Чат LocalStorage</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .chat-box { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; margin-bottom: 10px; }
+    .message { margin: 5px 0; }
+    .you { color: blue; }
+    .john { color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>Чат</h2>
+
+  <div class="chat-box" id="chatBox"></div>
+
+  <label>
+    Выберите пользователя:
+    <select id="username">
+      <option value="Вы">Вы</option>
+      <option value="Джон">Джон</option>
+    </select>
+  </label>
+  <br><br>
+
+  <input type="text" id="messageInput" placeholder="Введите сообщение" />
+  <button onclick="sendMessage()">Отправить</button>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+    const usernameSelect = document.getElementById('username');
+
+    function loadMessages() {
+      chatBox.innerHTML = '';
+      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+      messages.forEach(msg => {
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.classList.add(msg.user === 'Вы' ? 'you' : 'john');
+        div.textContent = `${msg.user}: ${msg.text}`;
+        chatBox.appendChild(div);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = messageInput.value.trim();
+      const user = usernameSelect.value;
+      if (text === '') return;
+
+      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+      messages.push({ user, text });
+      localStorage.setItem('chatMessages', JSON.stringify(messages));
+
+      messageInput.value = '';
+      loadMessages();
+    }
+
+    // Загружаем чат при открытии страницы
+    loadMessages();
+  </script>
+
+</body>
+</html>

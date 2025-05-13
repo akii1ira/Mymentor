@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mymentor</title>
+    <link rel="stylesheet" href="styel.css">
+    
+</head>
+<body>
+    <header>
+        <div class="log">
+            <img src="img/Symbol.png" alt="" width="34px" height="35px">
+            <h3>Mymentor</h3>
+        </div>
+        <ul>
+            <li class="o"> <a class="o" href="index.html">Home</a></li>
+            <li><a href="todolist.html">To-do-list</a></li>
+            <li><a href="resourses.html">Resourses</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="left">
+            <h1>What is mentoring?</h1>
+            <p style="margin-top: 50px;">This is the process of transferring knowledge and 
+            experience from the older generation to the younger one in the format of personal communication.</p>
+            <p>A mentor is a professional who is ready to share his unique knowledge and experience in the professional field you are interested in.</p>
+            <p>He will help you develop the necessary skills for your future career, help with scientific research and tell a couple of invaluable life stories.</p>
+            <h2 class="explore">Explore -></h2>
+            <div class="box">
+                <div class="m_box">
+                    <h2>200+</h2>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="m_box">
+                    <h2>10k+</h2>
+                    <p>Properties For Clients</p>
+                </div>
+                <div class="m_box">
+                    <h2>16+</h2>
+                    <p> Years of Experience</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="photo"></div>
+            <!-- <img src="img/onegirl.jpeg" alt=""> -->
+        </div>
+    </main>
+    <section>
+        <h1 class="w">Our Best Mentors</h1>
+        <div class="men_box">
+            <div class="box_m">
+                <img src="img/55805e4aa3c42e91d39d1e1fd2013e60.jpg" alt="" width="300px">
+                <h3>Anna Petrova</h3>
+                <p>Specialty: Frontend Development</p>
+                <p>Expert in HTML, CSS, JavaScript, and React. Loves helping beginners build their first interactive websites.</p>
+                <button class="m_btn " onclick="Anna()">Chat</button>
+            </div>
+            <div class="box_m">
+                <img src="img/6a93ca4205e6ac88c2f5b0dde45f9526.jpg" alt="" width="300px">
+                <h3>Marya  Akhmetova</h3>
+                <p> Backend & Databases</p>
+                <p> Skilled in Node.js, Express, SQL/NoSQL, and REST APIs. Helps students master server-side logic and data handling.</p>
+                <button class="m_btn " onclick="Marya()">Chat</button>
+            </div>
+            <div class="box_m">
+                <div class="k"></div>
+                <h3>Ivan Kim</h3>
+                <p>Computer Science & Algorithms</p>
+                <p>Passionate about teaching problem-solving, algorithms, and data structures. Prepares students for Olympiads.</p>
+                <button class="m_btn " onclick="Ivan()">Chat</button>
+            </div>
+        </div>  
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-left">
+            <h2>MyMentor</h2>
+            <p>Platform for development with the support of mentors.</p>
+          </div>
+          <div class="footer-right">
+            <a href="#">Home</a>
+            <a href="#">To-do-List</a>
+            <a href="#">Resourses</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 MyMentor</p>
+        </div>
+    </footer>
+      <script>
+        function Anna(){
+            window.location="chat.html"
+        }
+        function Marya(){
+            window.location="marya.html"
+        }
+        function Ivan(){
+            window.location="ivan.html"
+        }
+      </script>
+      
+</body>
+</html>

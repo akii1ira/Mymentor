@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mymentor</title>
+    <link rel="stylesheet" href="styel.css">
+    <style>
+        .del{
+            border: 1px solid rgba(0, 0, 0, 0.221);
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 15px;
+            background-color: #302844;
+            color: white;
+        }
+        .min{
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.221);
+            border-radius: 5px;
+        }
+
+        .mini_box{
+            display: flex;
+            width: 480px;
+            position: relative;
+            gap: 10px;
+        }
+        .del{
+            position: absolute;
+            right:0;
+        }
+        .mini_box,.btn,.btn2{
+            cursor: pointer;
+        }
+        p{
+            color: black;
+        
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="log">
+            <img src="img/Symbol.png" alt="" width="34px" height="35px">
+            <h3>Mymentor</h3>
+        </div>
+        <ul>
+            <li style="width: 50px;"> <a  href="index.html">Home</a></li>
+            <li  class="o" style="width: 80px;"> <a href="" class="o" >To-do-list</a></li>
+            <li><a href="resourses.html">Resourses</a></li>
+        </ul>
+    </header>
+    <div class="con" style="margin-top: 200px; margin-bottom: 200px; padding-bottom: 170px;">
+        <div class="l">
+            <h1><span style="color: #703bf7;">Welcome</span> </h1>
+            <h1>to the section where you can manage your tasks related to your educational or personal purpose!</h1>
+            <h3>Your mentor can offer you a list of tasks that need to be performed to achieve the goal.</h3>
+            <h3>You can enter these tasks here, monitor the progress and discuss with the mentor how the implementation is going.</h3>
+        </div>
+        <div class="r">
+            <div class="co">
+                <h2 style="margin-bottom: 30px;">To-Do-List</h2>
+                <input type="text" placeholder="Enter a new task" class="input">
+                <button class="btn">Add</button>
+                <div class="box">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer" style="margin-top: 200px;" >
+        <div class="footer-container">
+          <div class="footer-left">
+            <h2>MyMentor</h2>
+            <p style="color: rgba(255, 255, 255, 0.815);">Platform for development with the support of mentors.</p>
+          </div>
+          <div class="footer-right">
+            <a href="#">Home</a>
+            <a href="#">To-do-List</a>
+            <a href="#">Resourses</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p style="color: rgba(255, 255, 255, 0.892);">&copy; 2025 MyMentor</p>
+        </div>
+    </footer>
+    <script>
+        const localstorageitem=JSON.parse(localStorage.getItem('texts'))
+        const container=document.querySelector('.box')
+        const btn=document.querySelector('.btn')
+        const input=document.querySelector('.input')
+        let arr = JSON.parse(localStorage.getItem('list')) || [];
+        start(arr)
+        function start(arr){
+            container.innerHTML=""
+            for (let i = 0; i < arr.length; i++) {
+                const div=document.createElement('div')
+                div.innerHTML=`
+                    <div class="mini_box">
+                        <input type="checkbox" class="min">
+                        <p>${arr[i]}</p>
+                        <div class="del">Delete</div>
+                    </div>
+                `
+                container.appendChild(div)
+                div.querySelector('.del').addEventListener('click',function(){
+                    arr.splice(i, 1);
+                    localStorage.setItem('list', JSON.stringify(arr));
+                    start(arr)
+                })
+                const check=div.querySelector('.min')
+                const p=div.querySelector('p')
+                check.addEventListener('change',function(){
+                    if(check.checked){
+                        p.style.textDecoration="line-through"
+                    }else{
+                        p.style.textDecoration="none"
+                    }
+                })
+            }
+        }
+        btn.addEventListener('click',function(){
+            arr.push(input.value)
+            input.value=""
+            localStorage.setItem('list',JSON.stringify(arr))
+            start(arr)
+        })
+
+    </script>
+
+</body>
+</html>
